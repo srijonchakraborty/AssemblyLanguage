@@ -1,0 +1,90 @@
+; This code was written by Srijon Chakraborty
+; Main source code link on http://srijon.softallybd.com/define-odd-or-even-between-1-9-using-switch-case/
+; All my source codes are available on http://srijon.softallybd.com
+; Assembly Language Define Odd or Even between (1-9) using switch case
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+PROMPT_1 DB 'ENTER THE NUMBER BETWEEN (1-9): $'
+PROMPT_2 DB ' IS ODD. $'
+PROMPT_3 DB ' IS EVEN. $'
+
+.CODE
+MAIN PROC
+
+MOV AX,@DATA
+MOV DS,AX
+
+LEA DX,PROMPT_1
+MOV AH,9
+INT 21H
+
+
+MOV AH,1
+INT 21H ;input in Ax
+
+SUB AL,30H ;convert Hex to Dec
+MOV BL,AL
+
+MOV AH,2
+MOV DL,0DH
+INT 21H
+MOV DL,0AH
+INT 21H
+
+CMP BL,1 ;SWITCH CASE START
+JE  ODD
+
+CMP BL,2
+JE  EVEN
+
+CMP BL,3
+JE  ODD
+
+CMP BL,4
+JE  EVEN
+
+CMP BL,5
+JE  ODD
+
+CMP BL,6
+JE  EVEN
+
+CMP BL,7
+JE  ODD
+
+CMP BL,8
+JE  EVEN
+
+CMP BL,9
+JE  ODD ;END
+
+ODD:
+ADD BL,30H;convert Dec to Hex
+
+MOV AH,2
+MOV DL,BL
+INT 21H
+
+LEA DX,PROMPT_2
+MOV AH,9
+INT 21H
+JMP END_GO
+
+EVEN:
+ADD BL,30H;convert Dec to Hex
+
+MOV AH,2
+MOV DL,BL
+INT 21H
+
+LEA DX,PROMPT_3
+MOV AH,9
+INT 21H
+
+END_GO:
+MOV AH,4CH
+INT 21H
+MAIN ENDP
+END MAIN
