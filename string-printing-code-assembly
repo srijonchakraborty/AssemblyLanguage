@@ -1,0 +1,22 @@
+; This code was written by Srijon Chakraborty
+; Main source code link on http://srijon.softallybd.com/string-printing-code-in-assembly/
+; All my source codes are available on http://srijon.softallybd.com
+; Assembly Language Simple String printing code in Assembly
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+
+MSG DB 'SRIJON$'
+.CODE
+MAIN PROC
+
+MOV AX,@DATA
+MOV DS,AX
+LEA DX,MSG
+MOV AH,9
+INT 21H
+MOV AH,4CH
+INT 21H
+MAIN ENDP
+END MAIN
