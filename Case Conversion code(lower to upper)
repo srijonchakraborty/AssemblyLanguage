@@ -1,0 +1,46 @@
+; This code was written by Srijon Chakraborty
+; Main source code link on http://srijon.softallybd.com/case-conversion-codelower-to-upper/
+; All my source codes are available on http://srijon.softallybd.com
+; Assembly Language Case Conversion code(lower to upper).
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+PROMPT_1 DB 'ENTER THE ALPHABET BETWEEN(a-z): $'
+PROMPT_2 DB 'UPPER CASE OF THIS ALPHABET IS : $'
+
+.CODE
+MAIN PROC
+
+MOV AX,@DATA
+MOV DS,AX
+
+LEA DX,PROMPT_1
+MOV AH,9
+INT 21H
+
+MOV AH,1
+INT 21H ;input in Ax
+
+SUB AL,20H ;convert
+MOV BL,AL
+
+MOV AH,2
+MOV DL,0DH
+INT 21H
+MOV DL,0AH
+INT 21H
+
+LEA DX,PROMPT_2
+MOV AH,9
+INT 21H
+
+MOV AH,2
+MOV DL,BL
+INT 21H
+
+END_GO:
+MOV AH,4CH
+INT 21H
+MAIN ENDP
+END MAIN
