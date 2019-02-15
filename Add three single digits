@@ -1,0 +1,85 @@
+; This code was written by Srijon Chakraborty
+; Main source code link on http://srijon.softallybd.com/string-printing-code-in-assembly/
+; All my source codes are available on http://srijon.softallybd.com
+; Assembly Language Add three single digits
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+PROMPT_1 DB 'ENTER THE FIRST dIGIT: $'
+PROMPT_2 DB 'ENTER THE SECOND dIGIT: $'
+PROMPT_3 DB 'ENTER THE THIRD dIGIT: $'
+PROMPT_4 DB 'SUM IS: $'
+
+.CODE
+MAIN PROC
+MOV AX,@DATA
+MOV DS,AX
+
+LEA DX,PROMPT_1
+MOV AH,9
+INT 21H
+
+MOV AH,1
+INT 21H
+
+MOV BL,AL
+SUB BL,30H
+
+MOV AH,2
+MOV DL,0DH
+INT 21H
+MOV DL,0AH
+INT 21H
+
+LEA DX,PROMPT_2
+MOV AH,9
+INT 21H
+
+MOV AH,1
+INT 21H
+
+MOV BH,AL
+SUB BH,30H
+
+MOV AH,2
+MOV DL,0DH
+INT 21H
+
+MOV DL,0AH
+INT 21H
+
+ADD BL,BH
+
+LEA DX,PROMPT_3
+MOV AH,9
+INT 21H
+
+MOV AH,1
+INT 21H
+
+MOV BH,AL
+SUB BH,30H
+
+MOV AH,2
+MOV DL,0DH
+INT 21H
+
+MOV DL,0AH
+INT 21H
+
+LEA DX,PROMPT_4
+MOV AH,9
+INT 21H
+
+ADD BL,BH
+ADD BL,30H
+
+MOV AH,2
+MOV DL,BL
+INT 21H
+
+MOV AH,4CH
+INT 21H
+MAIN ENDP
+END MAIN
