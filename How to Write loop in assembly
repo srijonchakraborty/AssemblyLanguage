@@ -1,0 +1,32 @@
+; This code was written by Srijon Chakraborty
+; Main source code link on http://srijon.softallybd.com/string-printing-code-in-assembly/
+; All my source codes are available on http://srijon.softallybd.com
+; Assembly Language=> How to Write loop code in assembly
+
+.model small
+.stack 100H
+.data
+
+msg DB 'Srijon $'
+
+.code
+main proc
+mov cx,4 ;loop code 1
+;(cx,4 means that the loop will execute 5 times)
+mov ah,2 ;loop code 2
+
+mov ax,@data ;basic string printing code start
+mov ds,ax
+lea dx,msg
+mov ah,9
+int 21h  ;basic string printing code end
+
+top:     ;loop code 3
+int 21h  ;loop code 4
+loop top ;loop top means that it will goto the ("mov cx,4") line
+
+mov ah,4ch
+int 21h
+
+main endp
+end main
