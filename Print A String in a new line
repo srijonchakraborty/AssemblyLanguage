@@ -1,0 +1,22 @@
+; This code was written by Srijon Chakraborty
+; Main source code link on http://srijon.softallybd.com/print-a-string-in-a-new-line-code/
+; All my source codes are available on http://srijon.softallybd.com
+; Assembly Language Print A String in a new line Code
+
+.model small
+.stack 100H
+.data
+lf EQU 0ah ;line feed
+cr EQU 0dh ;carriage return
+msg db cr,lf, 'Test$'
+.code
+main proc
+mov ax,@data
+mov ds,ax
+lea dx,msg
+mov ah,9 ;display string function
+int 21h ; execute function
+mov ah,4ch ;Dos exit function
+int 21h
+main endp
+end main
