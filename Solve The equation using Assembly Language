@@ -1,0 +1,60 @@
+; This code was written by Srijon Chakraborty
+; Main source code link on http://srijon.softallybd.com/solve-the-equation-of-ya5-ba/
+; All my source codes are available on http://srijon.softallybd.com
+; Assembly Language Solve The equation Of y=(a*5-b)/a.
+
+; y=(a*5-b)/a where a & b are input
+.model small
+.stack 100h
+.data
+cr equ 0dh
+lf equ 0ah
+msg1 db 'enter A: $'
+msg2 db cr, lf, 'enter B: $'    ;cr=return carriage
+msg3 db cr, lf, 'Y: '           ;lf=line feed
+;$ is for asking values
+y db ?,'$'        ;here by $ sign y is declared as output path
+a db ?
+b db ?
+.code
+main proc
+mov ax, @data
+mov ds, ax
+
+mov ah, 9
+lea dx, msg1
+int 21h
+
+mov ah, 1
+int 21h
+sub al, 30h
+mov a, al
+
+mov ah, 9
+lea dx, msg2
+int 21h
+
+mov ah, 1
+int 21h
+sub al, 30h
+mov b, al
+
+mov bl, a
+mov al, 5
+mul bl
+
+mov cl, b
+sub al, cl
+div bl
+
+add al, 30h
+mov y,al
+
+mov ah, 9
+lea dx, msg3
+int 21h
+
+mov ah, 4ch
+int 21h
+main endp
+end main
